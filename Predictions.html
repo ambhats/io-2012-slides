@@ -1,0 +1,366 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <H3>
+        <u><b>Machine learning</b></u> is a type of artificial intelligence (AI) that provides computers with the ability to learn without being explicitly programmed. Machine learning focuses on the development of computer programs that can teach themselves to grow and change when exposed to new data.
+      </H3>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>What is Machine learning?</h2>
+    </hgroup>
+    <article>
+      <p>Algorithms that learn patterns from data to make intelligent decisions</p>
+      <br>
+      <ul class="build">
+        <li>Make sense of your data</li>
+        <li>Automate the Repetetive</li>
+        <li>Recommend the useful</li>
+          <ul>
+            <li>Pandora</li>
+            <li>Amazon recommendations</li>
+          </ul>
+        <li>Extract the essential</li>
+          <ul><li>Google Priority Inbox</li></ul>
+
+      </ul>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+<slide>
+    <hgroup>
+      <h2>Types of Predictions</h2>
+    </hgroup>
+    <article>
+    <br><br>
+      <table>
+        <tr>
+          <th>Regression</th>
+          <td>
+            <p>The output variable takes continuous values</p>
+            <ul>
+              <li>Stock Price</li>
+              <li>GDP Growth</li>
+              <li>Used car prices</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Classification</th>
+          <td>
+            <p>The output takes class labels</p>
+            <ul>
+              <li>Spam Detection</li>
+              <li>Sentiment analysis</li>
+              <li>Tagging</li>
+              <li>Language detection</li>
+              <li>Auto-Tagging comments</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </article>
+  </slide>
+
+
+<!-- ============================================================================ -->
+<!-- ======= NEW SLIDE ======= -->
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Getting Started</h2>
+      <h3>with Google Predictions</h3>
+    </hgroup>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Step 1</h2>
+      <h3>Prepare and Upload Data</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Gather your data in CSV data format</li>
+        <li>First column is your <b>Label</b></li>
+        <li>All other columns are your <b>Features</b></li>
+        <li>Each feature should be relevant to predicting the label</li>
+      </ul><br>
+    <p>Example: Language Prediction</p>
+    <pre data-lang="csv">
+"French", "Je m'appelle Aman"
+"French", "L'apprentissage automatique est cool"
+"English", "My name is Aman"
+"English", "Machine learning is cool"
+...
+</pre>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Step 1 Continued</h2>
+      <h3>Prepare and Upload Data</h3>
+    </hgroup>
+    <article>
+      <pre data-lang="csv">
+"French", "Je m'appelle Aman", <b>"France"</b>
+"French", "L'apprentissage automatique est cool", <b>“France"</b>
+"English", "My name is Aman", <b>"Canada"</b>
+"English", "Machine learning is cool", <b>“Canada"</b>
+...
+</pre>
+<ul class="build">
+  <li>Tips and tricks on <a href="https://cloud.google.com/prediction/docs/developer-guide#designrecommendations">Designing a good model</a></li>
+  <li>When ready, upload data to Google Storage:<li>
+  <pre data-lang="Commandline">gsutil cp language_data.csv gs://my_storage_bucket/language_data</pre>
+</ul>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Step 2</h2>
+      <h3>Train your Model</h3>
+    </hgroup>
+    <article>
+    <pre data-lang="HTTP">
+ POST .../prediction/v1.6/projects/myproject/trainedmodels
+    </pre>
+    <pre class="prettyprint" data-lang="JSON">
+{
+  "id": "language_model",
+  "storageDataLocation": "gs://ml_bucket/language_data"
+}
+</pre>
+<p>RESPONSE</p>
+<pre class="prettyprint" data-lang="JSON">
+{
+  "kind": "prediction#training",
+  "id": "language_model",
+  "selfLink": ".../prediction/v1.6/projects/myproject/trainedmodels/language_model",
+}
+</pre>
+    
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Step 3</h2>
+      <h3>Making Predictions</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+&lt;script type='text/javascript'&gt;
+  function predict() {
+    prediction.predict( 
+      <b>{
+        ‘data’ : ‘demos/my_model’,
+        ‘input’ : {‘csvInstance’: [document.getElementByID(‘inputBox’).value] }
+      } </b>
+  )}.execute(predictionCallback);
+&lt;/script&gt;
+</pre>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Point I wanted to make #1</li>
+          <li>Point I wanted to make #2</li>
+          <li>Point I wanted to make #3</li>
+          <li>Example <a href="#">link</a> in notes.</li>
+        </ul>
+        <p><b>Remember to say this tag line!</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>What is Machine Learning?</h2>
+    </hgroup>
+    <article>
+      <p>Think of a new product or service you've used recently thats made you think, wow that was Magical.</p>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>See this amazing link: <a href="http://www.google.com">link</a>.</li>
+        </ul>
+        <p><b>Remember to say this tag line!</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Presenter Mode</h2>
+    </hgroup>
+    <article>
+      <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode.
+      This setting is sticky, meaning refreshing the page will persist presenter
+      mode.</p>
+      <p>Hit <code><a href="?presentme=false" target="_self">?presentme=false</a></code> to disable presenter mode.</p>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Slide with Image</h2>
+    </hgroup>
+    <article>
+      <img src="images/chart.png" class="reflect" alt="Description" title="Description">
+      <footer class="source">source: place source info here</footer>
+    </article>
+  </slide>
+
+<!-- ======= NEW SLIDE ======= -->
+  <slide>
+    <hgroup>
+      <h2>Slide with Image (Centered horz/vert)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/barchart.png" alt="Description" title="Description">
+      <footer class="source">source: place source info here</footer>
+    </article>
+  </slide>
+
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Getting Started</h2>
+      <h3>with Google Predictions</h3>
+    </hgroup>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/sky.jpg)">
+    <hgroup>
+      <h2 class="white">Full Image (with Optional Header)</h2>
+    </hgroup>
+    <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        This is an example of quote text.
+      </q>
+      <div class="author">
+        Name<br>
+        Company
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Slide with Iframe</h2>
+    </hgroup>
+    <article>
+      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
+    </article>
+  </slide>
+
+  <slide>
+    <article>
+      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
+    </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
